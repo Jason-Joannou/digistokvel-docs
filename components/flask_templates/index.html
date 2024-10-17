@@ -1,0 +1,956 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../express/">
+      
+      
+        <link rel="next" href="../function_app/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Flask Templates - DigiStokvel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#why-we-use-flask-templates" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DigiStokvel" class="md-header__button md-logo" aria-label="DigiStokvel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DigiStokvel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Flask Templates
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system-architecture/overview/" class="md-tabs__link">
+          
+  
+  System Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  Components
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../devops/overview/" class="md-tabs__link">
+          
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DigiStokvel" class="md-nav__button md-logo" aria-label="DigiStokvel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DigiStokvel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            System Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Flask Templates
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Flask Templates
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onboarding-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Onboarding Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stokvel-creation-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stokvel Creation Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joining-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Joining Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approve-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approve Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-success-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Success Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-failed-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Failed Template
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../function_app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Function App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Devops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Devops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/agile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agile Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/terraform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="why-we-use-flask-templates">Why We Use Flask Templates</h1>
+<p>The use of Flask templates allows us to handle more complex user interactions that would be challenging to manage solely through the WhatsApp interface. While WhatsApp is an effective tool for simple, text-based communication and quick actions, it has limitations when dealing with forms that require multiple fields, user input validation, and more intricate user experiences. Here are a few key reasons:</p>
+<p><strong>Complex User Inputs</strong>:</p>
+<ul>
+<li><strong>Forms with Multiple Fields</strong>: Managing complex forms, such as updating user details or editing a stokvel's information, is more intuitive and streamlined through a web-based interface. Flask templates enable us to build forms that can include various input types, offer field validation, and provide detailed feedback, which would be cumbersome through a chat interface.</li>
+<li><strong>Data Validation</strong>: Flask allows for real-time data validation, ensuring users receive immediate feedback if they enter invalid information. On WhatsApp, this process would be less fluid, requiring multiple back-and-forth messages to correct user input errors.</li>
+</ul>
+<p><strong>Enhanced User Experience</strong>:</p>
+<ul>
+<li><strong>Visual Feedback and Structure</strong>: Unlike WhatsApp, which relies purely on text and simple buttons, a web interface built with Flask templates can provide a richer experience with visual cues, structured forms, and a more intuitive layout. This improves the user experience by guiding users through processes like updating details or managing group settings.</li>
+<li><strong>Security</strong>: Complex actions, such as updating passwords, are best handled through a secure web environment that can properly encrypt and manage user credentials. Flask templates allow for the secure handling of sensitive data inputs, ensuring a safer interaction compared to a more constrained platform like WhatsApp.</li>
+</ul>
+<p><strong>Integration with Backend Logic</strong>:</p>
+<ul>
+<li><strong>Direct Integration</strong>: Flask templates can directly interact with backend systems, making it easier to perform actions like form submissions, data processing, and user authentication. This integration streamlines the user experience, ensuring that inputs are processed quickly and accurately without the need for multiple steps.</li>
+</ul>
+<p>By using Flask templates, we can provide users with an enhanced, efficient, and secure way to perform complex tasks that go beyond what is feasible within a simple messaging app. This combination of a rich web interface for more intricate interactions and WhatsApp for quick and straightforward communication creates a balanced user experience, making the DigiStokvel platform both versatile and user-friendly.</p>
+<h2 id="onboarding-template">Onboarding Template</h2>
+<p>The <code>onboarding_template</code> page serves as a guide for new users to help them sign up and set up their accounts. It collects basic information like name, email, and password and may offer additional options to customize the user experience.</p>
+<p><strong>Data Captured:</strong></p>
+<ul>
+<li><strong>Full Name</strong>: A required field to capture the user's full name, which will be used to personalize the account and communication.</li>
+<li><strong>Email Address</strong>: A required field to capture the user's email, which must follow a valid email format. The email is used for communication and account management.</li>
+<li><strong>Password</strong>: A required field for account security. Password complexity rules may be enforced to ensure strong security.</li>
+<li><strong>Preference Settings</strong>: Optional fields that allow the user to customize their experience (e.g., notification settings, group suggestions).</li>
+</ul>
+<p><strong>Why the Onboarding Template page is designed so:</strong>
+Onboarding is critical for user retention and ensuring a smooth first experience. By guiding new users through account setup, the page ensures that users can easily get started with the system. It simplifies the sign-up process while capturing essential information needed for creating an account. The optional customization settings enhance the user experience by tailoring the platform to the user's preferences right from the start.</p>
+<p><strong>Endpoints in Onboarding Template:</strong>
+<strong>POST /onboarding</strong>:</p>
+<ul>
+<li>The form data is sent to the backend (<code>onboarding.py</code>), where it is validated for accuracy and completeness.</li>
+<li>The backend checks for duplicate emails and verifies that the password meets the security requirements.</li>
+<li>If the validation is successful, the user's account is created in the database, and they are logged into the system.</li>
+<li>If there are any issues, such as a duplicate email or password weakness, appropriate error messages are displayed to guide the user in fixing the problem.</li>
+</ul>
+<h2 id="stokvel-creation-template">Stokvel Creation Template</h2>
+<p>The <code>stokvel_creation_template</code> page allows users to create a new stokvel group by providing basic details such as the group's name, its purpose, and the initial list of members. The page is designed to streamline the process of starting a stokvel.</p>
+<p><strong>Data Captured:</strong></p>
+<ul>
+<li><strong>Group Name</strong>: A required field that captures the name of the new stokvel group.</li>
+<li><strong>Purpose</strong>: A description field that outlines the purpose or goal of the group. This helps new members understand what the group is about.</li>
+<li><strong>Initial Members</strong>: A list of people to be invited or added as founding members of the stokvel.</li>
+</ul>
+<p><strong>Why the Stokvel Creation Template page is designed so:</strong>
+This page is designed to encourage users to create new stokvels by providing a simple and straightforward process. Group creation needs to be intuitive to lower the barrier for entry, and the page achieves this by minimizing the number of required fields while still capturing essential details. The ability to invite or add initial members during creation also fosters early group collaboration.</p>
+<p><strong>Endpoints in Stokvel Creation Template:</strong>
+<strong>POST /create_stokvel</strong>:</p>
+<ul>
+<li>The form data is processed by <code>create_stokvel.py</code>, where the backend validates the group name to ensure uniqueness.</li>
+<li>The backend also ensures that required fields (e.g., group name and purpose) are filled out correctly.</li>
+<li>If the validation is successful, the new stokvel is created in the database, and the initial members are notified of their inclusion.</li>
+<li>If there are any issues, such as a duplicate group name, an error message is returned to the user for correction.</li>
+</ul>
+<h2 id="joining-template">Joining Template</h2>
+<p>The <code>joining_template</code> page allows users to submit a request to join an existing stokvel. The page collects the user's basic information and, optionally, a message explaining why they want to join the group.</p>
+<p><strong>Data Captured:</strong></p>
+<ul>
+<li><strong>User Information</strong>: The user's name and email address.</li>
+<li><strong>Reason for Joining</strong>: An optional field where the user can explain their motivation for joining the group. This is particularly useful for stokvels that have specific membership criteria.</li>
+</ul>
+<p><strong>Why the Joining Template page is designed so:</strong>
+This page formalizes the process of joining a stokvel, ensuring that administrators receive all the necessary information to make informed decisions about membership. The optional reason-for-joining field helps administrators understand the user's motivations and decide whether they are a good fit for the group.</p>
+<p><strong>Endpoints in Joining Template:</strong>
+<strong>POST /join_stokvel</strong>:</p>
+<ul>
+<li>The form data is processed by <code>join_stokvel.py</code>, which submits the user's request to the stokvel administrator.</li>
+<li>The system checks for potential issues (e.g., duplicate requests) before submitting the application.</li>
+<li>Upon successful submission, the user is notified that their request has been sent. The stokvel admin will then review the application and decide whether to accept or reject it.</li>
+</ul>
+<h2 id="approve-applications">Approve Applications</h2>
+<p>The <code>approve_applications</code> page is designed for stokvel administrators to manage membership requests. Administrators can view pending applications and either approve or reject them based on the details provided by the applicants.</p>
+<p><strong>Data Captured:</strong>
+- <strong>Pending Applications</strong>: A list of pending membership requests is displayed, including each applicant's name, email, and reason for joining (if provided).</p>
+<p><strong>Why the Approve Applications page is designed so:</strong>
+This page is essential for stokvel management. It provides a simple and intuitive interface for administrators to view and manage applications, ensuring that the group's membership is carefully controlled. By reviewing the reasons for joining, administrators can maintain the integrity of the group and ensure that new members align with the group's purpose.</p>
+<p><strong>Endpoints in Approve Applications:</strong>
+<strong>POST /approve_application</strong>:</p>
+<ul>
+<li>The administrator's decision (approve or reject) is sent to <code>approve_applications.py</code>, where the backend updates the status of the application in the database.</li>
+<li>If the application is approved, the user is notified and added to the group. If rejected, the user is informed of the decision.</li>
+<li>The page may also allow administrators to leave a note explaining their decision, particularly if the application is rejected.</li>
+</ul>
+<h2 id="action-success-template">Action Success Template</h2>
+<p>The <code>action_success_template</code> page is a generic confirmation page that informs users that their requested action has been successfully completed. It is commonly used after form submissions or updates, providing a clear indication that the user's request was processed without errors.</p>
+<p><strong>Data Captured:</strong>
+- No specific data is captured on this page. It simply displays a success message.</p>
+<p><strong>Why the Action Success Template page is designed so:</strong>
+Feedback is crucial for user experience. After completing an action (e.g., submitting a form or updating a profile), users need to know that their request was successful. The <code>action_success_template</code> provides this confirmation, ensuring that users are aware that their action was processed as expected.</p>
+<p><strong>Endpoints in Action Success Template:</strong>
+<strong>GET /action_success</strong>:</p>
+<ul>
+<li>This endpoint displays the success message after a user completes a specific action, such as submitting a form or making an update. It is designed to provide positive feedback and closure to the user's interaction.</li>
+</ul>
+<h2 id="action-failed-template">Action Failed Template</h2>
+<p>The <code>action_failed_template</code> page notifies users that an action they attempted has failed, usually due to a validation error or system issue. This page is designed to help users understand what went wrong and how they can correct it.</p>
+<p><strong>Data Captured:</strong></p>
+<ul>
+<li>No specific data is captured on this page. It simply displays an error message with guidance on how to resolve the issue.</li>
+</ul>
+<p><strong>Why the Action Failed Template page is designed so:</strong></p>
+<ul>
+<li>When something goes wrong, users need clear feedback to understand the problem and how to fix it. The <code>action_failed_template</code> page provides this feedback, helping users correct errors and retry their actions. It improves user experience by providing clear guidance on next steps.</li>
+</ul>
+<p><strong>Endpoints in Action Failed Template:</strong>
+<strong>GET /action_failed</strong>:</p>
+<ul>
+<li>This endpoint displays an error message when the user's action fails. It could be triggered by form validation failures, incorrect login attempts, or issues processing a request. The page offers guidance on how the user can resolve the issue or retry the action.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "search.exact_match", "navigation.tabs", "toc.integrate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

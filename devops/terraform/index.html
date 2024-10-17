@@ -1,0 +1,1001 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docker/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Terraform - DigiStokvel</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terraform-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DigiStokvel" class="md-header__button md-logo" aria-label="DigiStokvel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DigiStokvel
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Terraform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system-architecture/overview/" class="md-tabs__link">
+          
+  
+  System Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../components/overview/" class="md-tabs__link">
+          
+  
+  Components
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DigiStokvel" class="md-nav__button md-logo" aria-label="DigiStokvel" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DigiStokvel
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            System Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/flask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/flask_templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/function_app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Function App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Devops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Devops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agile Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terraform-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terraform-workflow-in-our-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform Workflow in our Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terraform Workflow in our Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-state-tfstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform State (tfstate)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terraform Diff
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Terraform</h1>
+
+<h2 id="terraform-overview">Terraform Overview</h2>
+<p>Terraform is an open-source Infrastructure as Code (IaC) tool that allows you to define and provision data center infrastructure using a high-level configuration language. With Terraform, you can manage resources across various cloud providers, such as Azure, AWS, and Google Cloud, in a consistent and repeatable manner.</p>
+<p>In our project, we have used Terraform to define and manage our infrastructure on Azure. This approach enables us to automate the deployment and management of resources, ensuring that our infrastructure is consistent, scalable, and easily reproducible.</p>
+<p>For example, below is the Terraform configuration file that outlines our API infrastructure setup:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># IaC main file</span>
+
+<span class="c1"># Define provider</span>
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;azurerm&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">features</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="na">subscription_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+
+<span class="p">}</span>
+
+<span class="c1"># Define resource group</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_resource_group&quot;</span><span class="w"> </span><span class="nv">&quot;masters_uct&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Masters-UCT&quot;</span>
+<span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;UK South&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Define our container registry</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_container_registry&quot;</span><span class="w"> </span><span class="nv">&quot;acr&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mastersuctacrv1&quot;</span>
+<span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.masters_uct.name</span>
+<span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.masters_uct.location</span>
+<span class="w">  </span><span class="na">sku</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Basic&quot;</span>
+<span class="w">  </span><span class="na">admin_enabled</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_container_group&quot;</span><span class="w"> </span><span class="nv">&quot;aci_flask_api&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flask-api&quot;</span>
+<span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.masters_uct.name</span>
+<span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.masters_uct.location</span>
+<span class="w">  </span><span class="na">os_type</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Linux&quot;</span>
+
+<span class="w">  </span><span class="nb">container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flask-api-container&quot;</span>
+<span class="w">    </span><span class="na">image</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${azurerm_container_registry.acr.login_server}/stokvel_flask_api:v1.0.2&quot;</span>
+<span class="w">    </span><span class="na">cpu</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="na">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.5&quot;</span>
+
+<span class="w">    </span><span class="nb">environment_variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">TWILIO_ACCOUNT_SID</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+<span class="w">      </span><span class="na">TWILIO_AUTH_TOKEN</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+<span class="w">      </span><span class="na">TWILIO_PHONE_NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nb">ports</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">port</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">80</span>
+<span class="w">      </span><span class="na">protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TCP&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="na">ip_address_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Public&quot;</span>
+<span class="w">  </span><span class="na">dns_name_label</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;stokveldigital&quot;</span><span class="c1"> # Ensure this is a unique DNS name</span>
+<span class="w">  </span><span class="nb">image_registry_credential</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">server</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_registry.acr.login_server</span>
+<span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_registry.acr.admin_username</span>
+<span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_registry.acr.admin_password</span>
+<span class="w">  </span><span class="p">}</span>
+
+
+<span class="p">}</span>
+
+<span class="kr">output</span><span class="w"> </span><span class="nv">&quot;container_registry_login_server&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_registry.acr.login_server</span>
+<span class="p">}</span>
+
+<span class="kr">output</span><span class="w"> </span><span class="nv">&quot;flask_api_fqdn&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_group.aci_flask_api.fqdn</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This Terraform configuration begins by specifying the Azure provider, ensuring that our deployment targets the correct cloud environment.</p>
+<ol>
+<li>
+<p><strong>Resource Group</strong>:</p>
+<ul>
+<li>We define a resource group named <code>Masters-UCT</code>, located in the <code>UK South</code> region. This resource group acts as an organizational container for all our related resources.</li>
+</ul>
+</li>
+<li>
+<p><strong>Azure Container Registry (ACR)</strong>:</p>
+<ul>
+<li>Within this resource group, we create an Azure Container Registry (ACR) named <code>mastersuctacr</code>. This ACR allows us to store and manage Docker container images, with the admin feature enabled for easier access.</li>
+</ul>
+</li>
+<li>
+<p><strong>Azure Container Instance (ACI)</strong>:</p>
+<ul>
+<li>To deploy our public API, we utilize an Azure Container Instance (ACI) named <code>mastersuctaci</code>. This instance runs a Linux-based container, specifically the <code>fsd-public-api</code> image, which is pulled directly from our ACR. The container is configured with 0.5 CPUs and 1.5 GB of memory, with port 80 open for HTTP traffic.</li>
+<li>The ACI is assigned a public IP address and is accessible via a DNS name label <code>fsdpublicapi</code>, enabling users to interact with our API.</li>
+</ul>
+</li>
+<li>
+<p><strong>Outputs</strong>:</p>
+<ul>
+<li>The configuration outputs the login server URL for the container registry and the fully qualified domain name (FQDN) for the container instance. These outputs provide essential endpoints for managing and accessing our deployed resources.</li>
+</ul>
+</li>
+</ol>
+<p>This Terraform setup ensures that our infrastructure is consistent, scalable, and easy to manage.</p>
+<h2 id="terraform-workflow-in-our-project">Terraform Workflow in our Project</h2>
+<p>To apply changes defined in a Terraform configuration file, we generally follow a series of commands. Here's how they works:</p>
+<h3 id="terraform-commands">Terraform Commands</h3>
+<ol>
+<li>
+<p><strong><code>terraform init</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: This command initializes the Terraform working directory. It downloads the necessary provider plugins specified in our configuration file (e.g., <code>azurerm</code> for Azure) and sets up the backend for storing the state file (<code>terraform.tfstate</code>).</li>
+<li><strong>When to Run</strong>: We run this command once after creating or cloning a Terraform configuration. It’s also necessary after adding new providers or modules to the configuration.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>terraform plan</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: This command creates an execution plan, showing us what Terraform will do when we apply our changes. It compares the state file with our current configuration to determine what needs to be created, modified, or destroyed.</li>
+<li><strong>When to Run</strong>: We use this command to review the changes before applying them. It’s a good practice to run it every time we make changes to your configuration file.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>terraform apply</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: This command applies the changes required to reach the desired state of the configuration, as outlined by the plan. It prompts us to confirm the execution of the changes by typing "yes".</li>
+<li><strong>When to Run</strong>: After reviewing the plan, we run this command to apply the changes to your infrastructure.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>terraform destroy</code></strong>:</p>
+<ul>
+<li><strong>Purpose</strong>: This command destroys all resources managed by our Terraform configuration. It is useful for cleaning up resources when they are no longer needed.</li>
+<li><strong>When to Run</strong>: We use this command when we want to completely remove our infrastructure. It will ask for confirmation before proceeding.</li>
+</ul>
+</li>
+</ol>
+<h3 id="terraform-state-tfstate">Terraform State (<code>tfstate</code>)</h3>
+<ul>
+<li>
+<p><strong>What It Is</strong>: Terraform's state file (<code>terraform.tfstate</code>) is a JSON file that keeps track of the infrastructure resources managed by Terraform. It acts as a snapshot of the deployed infrastructure, storing information about the current state of resources, including IDs, attributes, and metadata.</p>
+</li>
+<li>
+<p><strong>Purpose</strong>: The state file is essential for Terraform to understand what has been created, modified, or destroyed. When we run <code>terraform plan</code> or <code>terraform apply</code>, Terraform compares the current state in the <code>tfstate</code> file with the desired state defined in your configuration file to determine the necessary actions.</p>
+</li>
+<li>
+<p><strong>Storage</strong>: The state file is stored locally by default, but it can (and should) be stored remotely in a secure backend (e.g., Azure Blob Storage, AWS S3) to facilitate collaboration and ensure consistency across multiple team members.</p>
+</li>
+</ul>
+<h3 id="terraform-diff">Terraform Diff</h3>
+<ul>
+<li>
+<p><strong>What It Is</strong>: The diff in Terraform refers to the difference between the current state of our infrastructure (as recorded in the <code>tfstate</code> file) and the desired state defined in our Terraform configuration.</p>
+</li>
+<li>
+<p><strong>Purpose</strong>: The diff is generated when we run <code>terraform plan</code>. It shows a summary of what will change if we run <code>terraform apply</code>. This includes resources to be created, modified, or destroyed, marked with <code>+</code>, <code>~</code>, and <code>-</code> respectively in the output.</p>
+</li>
+<li>
+<p><strong>Importance</strong>: Reviewing the diff before applying changes is critical to ensure that the planned modifications align with your expectations. It helps avoid unintentional changes to our infrastructure.</p>
+</li>
+</ul>
+<p>By running these Terraform commands and understanding the role of the <code>tfstate</code> file and the diff, we can effectively manage our infrastructure changes, ensuring they are applied safely and accurately.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "search.exact_match", "navigation.tabs", "toc.integrate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
